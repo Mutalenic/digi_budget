@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'payments/index'
-  get 'payments/new'
-  get 'categories/index'
-  get 'categories/new'
-  get 'pages/index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-   root "pages#index"
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
+  
+  root to: "pages#index"
+  resources :users, only: %i[index]
+  resources :categories, only: %i[index new create show update destroy] do
+    resources :payments, only: %i[index new create show update destroy]
+  end
 end
