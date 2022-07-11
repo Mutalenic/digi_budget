@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'payments/index'
+  get 'payments/new'
   get 'categories/index'
   get 'categories/new'
   get 'pages/index'
