@@ -1,2 +1,35 @@
-<h1>Categories#new</h1>
-<p>Find me in app/views/categories/new.html.erb</p>
+<nav class="flex justify-center align-center space-x-4 bg-[#750075] text-white">
+  <div class="w-full flex flex-row justify-between p-5">   
+         <h1 class="text-xl text-center uppercase">Add Category</h1>    
+     </div>
+</nav>
+<div class="min-h-screen flex justify-center items-center bg-white mt-5">
+  <div class="p-10 border-[1px] -mt-10 border-slate-200 rounded-md flex flex-col items-center space-y-3">
+    <%= form_with(model: category) do |form| %>
+      <% if category.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+          <ul>
+            <% category.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="py-3">
+        <%= form.text_field :name, class: "p-3 border-[1px] border-slate-500 rounded-sm w-80 focus:outline-none", placeholder: 'Enter Category Name' %>
+      </div>
+
+      <div class="py-3">
+        <%= form.text_field :icon, class: "p-3 border-[1px] border-slate-500 rounded-sm w-80 focus:outline-none", placeholder: 'Enter Icon Name' %>
+      </div>
+
+      <div class="py-3">
+        <%= form.submit 'Save', class: "w-80 border-blue-900 hover:border-[#003087] hover:border-[2px] border-[1px] rounded-3xl p-3 text-[#0070ba] font-bold text-center focus:outline-none" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
