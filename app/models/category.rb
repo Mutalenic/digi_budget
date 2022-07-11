@@ -5,7 +5,7 @@ class Category < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :icon, presence: true
 
-  def recent_transactio
+  def recent_transactions
     payments.order(created_at: :desc).limit(5)
   end
 end
