@@ -1,46 +1,37 @@
 class PaymentsController < ApplicationController
-  before_action :set_payment, only: [:show, :update, :destroy]
-
   def index
-    @user = current_user
-    @categories = current_user.categories.includes(:payments).order(created_at: :desc)
+    @category = Category.find(params[:category_id])
+    @payments = Payment.where(category_id: @category.id)
+    @total_amount = @payments.sum(:amount)
   end
+
+  def new; end
+
+  def edit; end
 
   def create
-    add_payment = current_user.payments.new(payment_params)
+    @payments = current_user.payments.new(payment_params)
 
-    if add_payment.save
-      redirect_to payments_path, notice: 'Payment was successfully created.'
+    if @payments.save
+      redirect_to category_payments_path, notice: 'Payment added'
     else
-      render :new, notice: 'Payment was not created.'
-    end
-  end
-
-  def update
-    if @payment.update(payment_params)
-      redirect_to payments_path, notice: 'Payment was successfully updated.'
-    else
-      render :edit, notice: 'Payment was not updated.'
+      render :new, alert: 'Payment failed'
     end
   end
 
   def destroy
-    @payment.destroy
-    redirect_to payments_path, notice: 'Payment was successfully destroyed.'
+    @payment = Payment.find(params[:id])
+
+    if @payment.destroy
+      redirect_to categories_path, notice: 'Payment deleted'
+    else
+      render :index, alert: 'Failed to delete payment'
+    end
   end
 
   private
 
-  def set_payment
-    @payment = current_user.payments.find(params[:id])
-  end
-
   def payment_params
     params.permit(:name, :amount, :category_id)
   end
-
-  def category_params
-    params.permit(:name, :icon)
-  end
-
 end

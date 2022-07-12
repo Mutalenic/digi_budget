@@ -1,6 +1,9 @@
 <nav class="flex justify-center align-center space-x-4 bg-[#750075] text-white">
   <ul class="w-full flex flex-row justify-between align-center p-5">
        <li>
+      <%= link_to '', categories_path, class: "text-xl fa-solid fa-arrow-left" %>
+    </li>       
+       <li>
       <h1 class="text-xl uppercase">payments</h1>
     </li>
     <li>
@@ -8,3 +11,16 @@
     </li>
   </ul>
 </nav>
+<div>
+  <% @payments.each do |payment| %>
+    <div class="flex justify-between align-center shadow-lg border p-4 flex mb-6">
+        <div class="w-full">
+          <%= render payment %>
+        </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="text-center mt-6">
+  <%= link_to "Add new transaction", new_category_payment_path, class: "w-full bg-[#3671b9] rounded-3xl p-3 text-white font-bold hover:bg-[#003087] text-center uppercase" %>
+</div>
