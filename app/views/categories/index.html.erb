@@ -22,7 +22,7 @@
       <div class="text-sm">
       <p class="text-gray-700">Total: $<%= category.payments.inject(0) { |total, e| total + (e.amount) }%></p><br />
         
-    <%= button_to 'Delete', category, class: 'text-red-400  cursor-not-allowed bg-[#e6e6fa] rounded-3xl p-3 px-4  hover:bg-[#ff0000]', method: :delete %>
+    <%= button_to 'Delete', category, class: 'text-red-400  cursor bg-[#e6e6fa] rounded-3xl p-3 px-4  hover:bg-[#ff0000]', method: :delete %>
       </div>
     </div>
   </div>
