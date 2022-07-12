@@ -1,2 +1,10 @@
-<h1>Payments#index</h1>
-<p>Find me in app/views/payments/index.html.erb</p>
+<nav class="flex justify-center align-center space-x-4 bg-[#750075] text-white">
+  <ul class="w-full flex flex-row justify-between align-center p-5">
+       <li>
+      <h1 class="text-xl uppercase">payments</h1>
+    </li>
+    <li>
+      <%= button_to 'Log out', destroy_user_session_path, method: :delete, class: "text-white text-xl uppercase" %>
+    </li>
+  </ul>
+</nav>
