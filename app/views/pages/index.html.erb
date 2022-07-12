@@ -1,10 +1,30 @@
+<nav class="flex justify-center align-center space-x-4 bg-[#750075] text-white">
+  </nav>
+
 <div class="min-h-screen flex justify-center items-center bg-gray">
-<div class="p-10 border-4 border-gray-300 rounded-lg shadow-lg items-center space-y-3">
-<div class="py-10">
-<h1 class="text-3xl font-bold text-center">DigiBudget</h1>
-<p class="text-center text-gray-700">
-<%= t('welcome to the Digi Budget') %>
-</p>
+<div class="p-10 border-4 border-gray-300 rounded-lg shadow-lg items-center space-y-2">
+<div class="py-15">
+<h class="w-full bg-[#750075] p-4 rounded-2xl text-3xl font-bold text-white text-center ">DigiBudget</h>
+<% if user_signed_in? %>
+<h3>Welcome to my Digi Budget App!</h3><br />
+<br />
+<button class="w-full bg-[#3671b9] rounded-xl p-3 text-white font-bold hover:bg-[#4cbb17] text-center uppercase" onclick="location.href='/categories'">Categories</button><br /><br />
+<%= button_to 'Log out', destroy_user_session_path, method: :delete, class: "full bg-[#3671b9] rounded-3xl p-3 text-white font-bold hover:bg-[#B1365B] text-center uppercase" %>
+<% else %>
+<div><br />
+<h3 class="text-center  text-l font-bold">Sign in or Sign-up to continue</h3>
+<div><br />
+<div class="flex justify-center">
+<div class="w-full">
+<%= button_to 'Sign in', new_user_session_path, class: "full bg-[#3671b9] rounded-2xl p-3 text-white font-bold hover:bg-[#4cbb17] text-center uppercase" %>
+</div>
+<div class="w-full">
+<%= button_to 'Sign up', new_user_registration_path, class: "full bg-[#3671b9] rounded-2xl p-3 text-white font-bold hover:bg-[#4cbb17] text-center uppercase" %>
+</div>
+</div>
+<% end %>
 </div>
 </div>
 </div>
+
+
