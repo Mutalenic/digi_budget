@@ -6,12 +6,16 @@ class CategoriesController < ApplicationController
     @categories = Category.all
   end
 
+  def new
+    @category = Category.all.where(user_id: current_user.id)
+  end
+
     def create
       @category = Category.new(category_params)
-    @category.user_id = current_user.id
+      @category.user_id = current_user.id
 
       if @category.save
-        redirect_to category_path, notice: 'Category was successfully created.'
+        redirect_to categories_path, notice: 'Category was successfully created.'
       else
         render :new, notice: 'Category was not created.'
       end
@@ -34,7 +38,7 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.permit(:name, :icon)
+    params.permit(:name, :icon, :user_id)
   end
     
 end

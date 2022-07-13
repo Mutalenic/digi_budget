@@ -11,10 +11,13 @@
 
 <% @categories.each do |category| %>
   <div class="flex justify-between align-center shadow-lg border p-4 flex mb-6 hover:bg-[#C576F6]">
-        <div class="flex flex-col items-start">
-          
-      <p class="text-gray-900 font-bold text-md uppercase"><%= link_to category.name, category_payments_path(category_id: category.id) %></p>
+        <div class="flex flex-row gap-10 items-start">
+      <%= image_tag "user.png", class: "w-10 h-10" %>
+      <div class="flex flex-col">
+      <p class="text-gray-900 font-bold align-center text-md uppercase"><%= link_to category.name, category_payments_path(category_id: category.id) %></p>
+      <hr/>
       <small class="text-gray-600"><%= category.created_at.strftime("%m/%d/%Y") %></small>
+      </div>
     </div>
     <div class="flex items-start">
       <div class="text-sm">
