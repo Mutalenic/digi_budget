@@ -3,37 +3,34 @@ class CategoriesController < ApplicationController
 
   def index
     @user = current_user
-    @categories = current_user.categories.includes(:payments).order(created_at: :desc)
+    @categories = Category.all
   end
 
     def create
-      add_category = current_user.categories.new(category_params)
+      @category = Category.new(category_params)
+    @category.user_id = current_user.id
 
-
-      if add_category.save
-        redirect_to categories_path, notice: 'Category was successfully created.'
+      if @category.save
+        redirect_to category_path, notice: 'Category was successfully created.'
       else
         render :new, notice: 'Category was not created.'
       end
     end
 
-  def update
-    if @category.update(category_params)
-      redirect_to categories_path, notice: 'Category was successfully updated.'
-    else
-      render :edit, notice: 'Category was not updated.'
-    end
-  end
-
   def destroy
-    @category.destroy
-    redirect_to categories_path, notice: 'Category was successfully destroyed.'
+    @user = current_user
+    @category = Category.find(params[:id])
+    if @category.destroy
+      redirect_to categories_path, notice: 'Category was successfully deleted.'
+    else
+      redirect_to categories_path, notice: 'Category was not deleted.'
+    end
   end
 
   private
 
   def set_category
-    @category = current_user.categories.find(params[:id])
+    @category = Category.find(params[:id])
   end
 
   def category_params

@@ -11,17 +11,14 @@
 
 <% @categories.each do |category| %>
   <div class="flex justify-between align-center shadow-lg border p-4 flex mb-6 hover:bg-[#C576F6]">
-    <div class="mr-2 flex items-start">
-      <%= category.icon %>
-    </div>
-    <div class="flex flex-col items-start">
+        <div class="flex flex-col items-start">
           
       <p class="text-gray-900 font-bold text-md uppercase"><%= link_to category.name, category_payments_path(category_id: category.id) %></p>
       <small class="text-gray-600"><%= category.created_at.strftime("%m/%d/%Y") %></small>
     </div>
     <div class="flex items-start">
       <div class="text-sm">
-      <p class="text-gray-700">Total: $<%= category.payments.inject(0) { |total, e| total + (e.amount) }%></p><br />
+      <p class="text-gray-700">Total: $<%= Payment.where(category_id: category.id).reduce(0) { |sum, t| sum + t.amount } %></p><br />
         
     <%= button_to 'Delete', category, class: 'text-red-400  cursor bg-[#e6e6fa] rounded-3xl p-3 px-4  hover:bg-[#ff0000]', method: :delete %>
       </div>
