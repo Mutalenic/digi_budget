@@ -1,6 +1,9 @@
 class Category < ApplicationRecord
   belongs_to :user
-  has_many :payments, dependent: :destroy
+  has_many :category_payments
+  has_many :payments, through: :category_payments
+
+  has_one :icon, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :icon, presence: true

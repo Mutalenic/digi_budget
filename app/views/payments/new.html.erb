@@ -1,18 +1,19 @@
 <nav class="flex justify-center align-center space-x-4 bg-[#750075] text-white">
   <ul class="w-full flex flex-row justify-between align-center p-5">
        <li>
-      <h1 class="text-xl uppercase">categories</h1>
+      <h1 class="text-xl uppercase">new payments</h1>
     </li>
     <li>
       <%= button_to 'Log out', destroy_user_session_path, method: :delete, class: "text-white text-xl uppercase" %>
-    </li>
   </ul>
 </nav>
+
 <div class="text-left px-3 mt-6">
-    <%= form_with model: @category_payment, url: new_category_payment_path do |f| %><br />
-    <%= f.text_field :name, placeholder: 'Name', class: 'w-full bg-[#3671b9] rounded-3xl p-3 text-white font-bold hover:bg-[#003087] text-center uppercase' %><br />
-    <%= f.number_field :amount, placeholder: 'Amount', class: 'w-full bg-[#3671b9] rounded-3xl p-3 text-white font-bold hover:bg-[#003087] text-center uppercase' %><br />
-    <%= f.submit 'Add', class: 'w-full bg-[#3671b9] rounded-3xl p-3 text-white font-bold hover:bg-[#003087] text-center uppercase' %>
+<h1>Add A New Payment</h1>
+    <%= form_with model: @category_payment, url: category_payments_path do |f| %><br />
+    <%= f.text_field :name, placeholder: 'Name', class: 'w-full bg-[#3671b9] rounded-3xl p-2 text-white font-bold hover:bg-[#003087] text-center uppercase' %><br />
+    <%= f.number_field :amount, placeholder: 'Amount', class: 'w-full bg-[#3671b9] rounded-3xl p-2 text-white font-bold hover:bg-[#003087] text-center uppercase' %><br />
+    <%= f.submit 'Add Payment', class: 'w-full bg-[#3671b9] rounded-3xl p-3 text-white font-bold hover:bg-[#003087] text-center uppercase' %>
     <% end %>
 </div>
 
