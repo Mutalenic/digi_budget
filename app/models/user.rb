@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :categories
   has_many :payments
 
-  validates :name, presence: true, length: { maximum: 100, minimum: 2 }
+  validates :name, presence: true, length: { maximum: 50, minimum: 2 }
 
   def admin?
     role == 'admin'
